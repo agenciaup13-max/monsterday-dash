@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MonsterDay · Dashboard de Tráfego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,700;0,800;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?t=20260702">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo">
+        <span class="logo-monster">MONSTER</span><span class="logo-day">DAY</span>
+        <span class="logo-sub">Receita Previsível</span>
+      </div>
+      <div class="brand-tag">Dashboard de Tráfego · Meta Ads</div>
+    </div>
+    <div class="top-right">
+      <div class="updated">Atualizado <b id="updated">—</b><span class="live">● ao vivo</span></div>
+      <div class="periods" id="periods"></div>
+    </div>
+  </header>
+
+  <div class="coverage" id="coverage"></div>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="funil">Funil</button>
+    <button class="tab" data-tab="otim">Otimização</button>
+    <button class="tab" data-tab="score">Leadscore</button>
+  </nav>
+
+  <!-- ============ FUNIL ============ -->
+  <section class="panel-tab" id="tab-funil">
+    <div class="row-2">
+      <div class="card health">
+        <div class="card-h">Saúde geral do funil</div>
+        <div class="health-body">
+          <div id="healthGauge"></div>
+          <div class="health-legend" id="healthLegend"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h">Funil do período</div>
+        <div id="funnel"></div>
+      </div>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <div class="card">
+      <div class="card-h">Visão diária <span class="hint">gasto com imposto · leads e qualificados (A+B) por dia</span></div>
+      <div class="table-scroll"><table class="tbl" id="dailyTbl"></table></div>
+    </div>
+  </section>
+
+  <!-- ============ OTIMIZAÇÃO ============ -->
+  <section class="panel-tab hidden" id="tab-otim">
+    <div class="card">
+      <div class="card-h">Tabela de otimização <span class="hint">clique para abrir campanha → conjunto → anúncio · veja de onde vêm os Leadscore A e B</span></div>
+      <div class="tree-legend" id="treeLegend"></div>
+      <div class="table-scroll"><table class="tbl tree" id="treeTbl"></table></div>
+    </div>
+  </section>
+
+  <!-- ============ LEADSCORE ============ -->
+  <section class="panel-tab hidden" id="tab-score">
+    <div class="row-2">
+      <div class="card">
+        <div class="card-h">Distribuição por Leadscore <span class="hint">no período</span></div>
+        <div class="score-body">
+          <div id="scoreGauge"></div>
+          <div id="scoreBars"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h">Como o Leadscore é calculado</div>
+        <div id="scoringRules"></div>
+        <div id="tierRules"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">Quem são os Qualificados (A + B) <span class="hint">perfil dos leads quentes/mornos</span></div>
+      <div class="row-3" id="qualifBreak"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h">Ranking de anúncios por Qualificados (A + B) <span class="hint">onde investir para trazer mais lead bom</span></div>
+      <div class="table-scroll"><table class="tbl" id="adRankTbl"></table></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>MonsterDay · dados agregados, somente leitura · imposto Meta ×<b id="taxf">1,1385</b> incluso no investimento e nas métricas</span>
+  </footer>
+</div>
+
+<script src="data.js?t=20260702145200"></script>
+<script src="app.js?t=20260702145200"></script>
+</body>
+</html>
