@@ -7,9 +7,11 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: refresh
+  group: monsterday-pages
   cancel-in-progress: false
 
 jobs:
@@ -20,7 +22,7 @@ jobs:
       - name: Build data.js (leads x queries + leadscore)
         shell: powershell
         run: powershell -ExecutionPolicy Bypass -File .\build.ps1 -Mode all
-      - name: Commit se mudou
+      - name: Commit data.js se mudou
         shell: powershell
         run: |
           git config user.name  "github-actions[bot]"
@@ -31,3 +33,24 @@ jobs:
             git pull --rebase origin main
             git push
           } else { Write-Host "sem mudancas" }
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Monta _site (só arquivos públicos — sem CSV/PII)
+        run: |
+          mkdir -p _site
+          cp index.html app.js styles.css data.js .nojekyll _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
